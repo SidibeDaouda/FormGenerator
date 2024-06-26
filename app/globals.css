@@ -2,32 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
+@layer components {
+  .box-container {
+    @apply w-full !bg-[#ffffff82];
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+  .text-bg-primary-color {
+    @apply text-[#ccc2b8];
+  }
+
+  .text-secondary-color {
+    @apply text-[#b4a094];
+  }
+
+  .bg-primary-color {
+    @apply bg-[#ccc2b8];
+  }
+
+  .bg-secondary-color {
+    @apply bg-[#b4a094];
+  }
+
+  .bg-third-color {
+    @apply bg-[#927b69];
+  }
+
+  .bg-fourth-color {
+    @apply bg-[#927b69];
   }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-image: url(../public/bg-wave.svg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.btn-common {
+  @apply disabled:bg-gray-400 transition-all duration-300 rounded-lg shadow-sm text-white bg-secondary-color hover:!bg-[#927b69];
 }
