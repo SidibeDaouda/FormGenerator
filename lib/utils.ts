@@ -40,8 +40,8 @@ export interface Field {
   options?: FieldOption[];
   min?: number;
   max?: number;
+  errorMessage?: string | null;
 }
-[];
 
 // Interface for a form field
 export interface FormData {
@@ -74,6 +74,7 @@ export const initializeField = (
         ...baseField,
         min: minValue,
         max: maxValue,
+        value: minValue,
       };
     case "select":
     case "radio":
@@ -81,6 +82,12 @@ export const initializeField = (
       return {
         ...baseField,
         options: options,
+        value: options.length > 0 ? options[0].value : "",
+      };
+    case "date":
+      return {
+        ...baseField,
+        value: new Date().toISOString().split("T")[0],
       };
     default:
       return baseField;
@@ -100,3 +107,38 @@ export const fieldList: { value: FieldType; text: string }[] = [
 ];
 
 export type ViewType = "preview" | "formList" | "answerList";
+
+export const validateField = (field: Field): string | null => {
+  if (field.required && !field.value) {
+    return "Ce champ est obligatoire";
+  }
+
+  if (
+    field.min !== undefined &&
+    typeof field.value === "number" &&
+    field.value < field.min
+  ) {
+    return `La valeur doit être supérieure ou égale à ${field.min}`;
+  }
+
+  if (
+    field.max !== undefined &&
+    typeof field.value === "number" &&
+    field.value > field.max
+  ) {
+    return `La valeur doit être inférieure ou égale à ${field.max}`;
+  }
+
+  if (
+    field.fieldType === "email" &&
+    field.required &&
+    typeof field.value === "string"
+  ) {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(field.value)) {
+      return "Adresse email invalide";
+    }
+  }
+
+  return null;
+};

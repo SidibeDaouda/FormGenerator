@@ -12,7 +12,7 @@ import AnswereList from "@/components/AnswereList";
 export default function Home() {
   const [view, setView] = useState<ViewType>("preview");
   const [allForms, setAllForms] = useState<FormData[]>([]);
-  const [editMode, setEditMode] = useState(false);
+  const [editMode, setEditMode] = useState(true);
   const [answerList, setAnswerList] = useState<FormData[]>([]);
   const [answereMode, setAnswereMode] = useState(false);
   const [formData, setFormData] = useState<FormData>({
@@ -20,6 +20,10 @@ export default function Home() {
     formName: "Nom du formulaire",
     fields: [],
   });
+
+  console.log("editMode", editMode);
+  console.log("answereMode", answereMode);
+  console.log("view", view);
 
   useEffect(() => {
     const allFormsData = localStorage.getItem("allForms");

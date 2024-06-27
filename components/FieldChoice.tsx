@@ -67,7 +67,9 @@ export default function FieldChoice({ formData, setFormData }: Props) {
   const choiceReset = () => {
     setFieldName("");
     setOptions([]);
-    setIsRequired(false);
+    setIsRequired(
+      fieldType === "date" || fieldType === "radio" || fieldType === "range"
+    );
     setMinValue(0);
     setMaxValue(100);
   };

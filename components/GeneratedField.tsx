@@ -14,7 +14,7 @@ import {
   SelectValue,
 } from "./ui/select";
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
-import { FormData } from "@/lib/utils";
+import { FormData, validateField } from "@/lib/utils";
 
 type Props = {
   formData: FormData;
@@ -53,6 +53,7 @@ export default function GeneratedField(props: Props) {
   const updateFieldValue = (index: number, value: any) => {
     const updatedFields = [...formData.fields];
     updatedFields[index].value = value;
+    updatedFields[index].errorMessage = validateField(updatedFields[index]);
     setFormData({ ...formData, fields: updatedFields });
   };
 
@@ -241,6 +242,9 @@ export default function GeneratedField(props: Props) {
                     onChange={(e) => updateFieldValue(index, e.target.value)}
                     disabled={editMode}
                   />
+                )}
+                {field.errorMessage && (
+                  <p className="text-red-500 text-sm">{field.errorMessage}</p>
                 )}
               </div>
             </div>
