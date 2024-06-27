@@ -117,7 +117,6 @@ export default function PrewievBox(props: Props) {
       <GeneratedForm
         formData={formData}
         setFormData={setFormData}
-        editMode={editMode}
         answereMode={answereMode}
       />
 
