@@ -21,10 +21,6 @@ export default function Home() {
     fields: [],
   });
 
-  console.log("editMode", editMode);
-  console.log("answereMode", answereMode);
-  console.log("view", view);
-
   useEffect(() => {
     const allFormsData = localStorage.getItem("allForms");
     if (allFormsData) {

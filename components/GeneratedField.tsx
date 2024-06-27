@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
@@ -25,6 +24,7 @@ type Props = {
 
 export default function GeneratedField(props: Props) {
   const { formData, setFormData, editMode, answereMode } = props;
+
   const handleCheckboxChange = (
     index: number,
     optionIndex: number,
