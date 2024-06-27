@@ -12,7 +12,7 @@ import AnswereList from "@/components/AnswereList";
 export default function Home() {
   const [view, setView] = useState<ViewType>("preview");
   const [allForms, setAllForms] = useState<FormData[]>([]);
-  const [editMode, setEditMode] = useState(true);
+  const [editMode, setEditMode] = useState(false);
   const [answerList, setAnswerList] = useState<FormData[]>([]);
   const [answereMode, setAnswereMode] = useState(false);
   const [formData, setFormData] = useState<FormData>({
@@ -30,6 +30,9 @@ export default function Home() {
     if (answerListData) {
       setAnswerList(JSON.parse(answerListData));
     }
+
+    console.log(editMode);
+    console.log(answereMode);
   }, []);
 
   const handleDragEnd = (result: DropResult) => {
