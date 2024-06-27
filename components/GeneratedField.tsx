@@ -18,12 +18,11 @@ import { FormData, validateField } from "@/lib/utils";
 type Props = {
   formData: FormData;
   setFormData: (formData: FormData) => void;
-  editMode: boolean;
   answereMode: boolean;
 };
 
 export default function GeneratedField(props: Props) {
-  const { formData, setFormData, editMode, answereMode } = props;
+  const { formData, setFormData, answereMode } = props;
 
   const handleCheckboxChange = (
     index: number,
@@ -110,7 +109,7 @@ export default function GeneratedField(props: Props) {
                     placeholder="Entrez votre réponse"
                     className="rounded-lg shadow-sm"
                     onChange={(e) => updateFieldValue(index, e.target.value)}
-                    disabled={editMode}
+                    disabled={!answereMode}
                   />
                 )}
                 {field.fieldType === "select" && (
@@ -119,7 +118,7 @@ export default function GeneratedField(props: Props) {
                       field.options ? String(field.options[0].value) : undefined
                     }
                     onValueChange={(value) => updateFieldValue(index, value)}
-                    disabled={editMode}
+                    disabled={!answereMode}
                   >
                     <SelectTrigger
                       id={`field-${index}`}
@@ -146,7 +145,7 @@ export default function GeneratedField(props: Props) {
                       field.options ? String(field.options[0].value) : undefined
                     }
                     onValueChange={(value) => updateFieldValue(index, value)}
-                    disabled={editMode}
+                    disabled={!answereMode}
                   >
                     {field.options?.map((option, optionIndex) => (
                       <div
@@ -156,7 +155,7 @@ export default function GeneratedField(props: Props) {
                         <RadioGroupItem
                           value={String(option.value)}
                           id={`field-${index}-${optionIndex}`}
-                          disabled={editMode}
+                          disabled={!answereMode}
                         />
                         <Label htmlFor={`field-${index}-${optionIndex}`}>
                           {String(option.value)}
@@ -176,7 +175,7 @@ export default function GeneratedField(props: Props) {
                         onCheckedChange={(checked: boolean) =>
                           handleCheckboxChange(index, optionIndex, checked)
                         }
-                        disabled={editMode}
+                        disabled={!answereMode}
                       />
                       <Label htmlFor={`field-${index}-${optionIndex}`}>
                         {String(option.value)}
@@ -190,7 +189,7 @@ export default function GeneratedField(props: Props) {
                     type="number"
                     className="rounded-lg shadow-sm"
                     onChange={(e) => updateFieldValue(index, e.target.value)}
-                    disabled={editMode}
+                    disabled={!answereMode}
                   />
                 )}
                 {field.fieldType === "range" && (
@@ -207,7 +206,7 @@ export default function GeneratedField(props: Props) {
                       onValueChange={(value) => {
                         updateFieldValue(index, value[0]);
                       }}
-                      disabled={editMode}
+                      disabled={!answereMode}
                     />
                     <div className="w-auto">{field.value || "0"}</div>
                   </div>
@@ -220,7 +219,7 @@ export default function GeneratedField(props: Props) {
                     onChange={(e) =>
                       updateFieldValue(index, e.target.files?.[0])
                     }
-                    disabled={editMode}
+                    disabled={!answereMode}
                   />
                 )}
                 {field.fieldType === "email" && (
@@ -230,7 +229,7 @@ export default function GeneratedField(props: Props) {
                     placeholder="Entrez votre email"
                     className="rounded-lg shadow-sm"
                     onChange={(e) => updateFieldValue(index, e.target.value)}
-                    disabled={editMode}
+                    disabled={!answereMode}
                   />
                 )}
                 {field.fieldType === "date" && (
@@ -240,7 +239,7 @@ export default function GeneratedField(props: Props) {
                     defaultValue={new Date().toISOString().split("T")[0]}
                     className="rounded-lg shadow-sm"
                     onChange={(e) => updateFieldValue(index, e.target.value)}
-                    disabled={editMode}
+                    disabled={!answereMode}
                   />
                 )}
                 {field.errorMessage && (

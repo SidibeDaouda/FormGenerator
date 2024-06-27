@@ -11,12 +11,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 type Props = {
   formData: FormData;
   setFormData: (formData: FormData) => void;
-  editMode: boolean;
   answereMode: boolean;
 };
 
 export default function GeneratedForm(props: Props) {
-  const { formData, setFormData, editMode, answereMode } = props;
+  const { formData, setFormData, answereMode } = props;
   const [isEditingFormName, setIsEditingFormName] = useState(false);
   const form = useForm<FormData>();
 
@@ -61,7 +60,6 @@ export default function GeneratedForm(props: Props) {
                 <GeneratedField
                   formData={formData}
                   setFormData={setFormData}
-                  editMode={editMode}
                   answereMode={answereMode}
                 />
                 {provided.placeholder}
